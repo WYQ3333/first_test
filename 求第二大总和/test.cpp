@@ -57,32 +57,68 @@
 #include<string>
 using namespace std;
 
+//class Solution{
+//public:
+//	string& StrResult(string s1, string s2){
+//		const char *temp = s2.c_str();
+//		int pos = 0;
+//		while (*temp != '\0'){
+//			const char * cur = temp;
+//			while (-1 != (pos = (int)s1.find(*temp))){
+//				s1.erase(pos, 1);
+//				cur++;
+//			}
+//			++temp;
+//		}
+//		return s1;
+//	}
+//};
+//
+//int main(){
+//	string str1;
+//	cin >> str1;
+//	string str2;
+//	cin >> str2;
+//	string result = "";
+//	Solution s;
+//	result = s.StrResult(str1, str2);
+//	
+//	cout << result << endl;
+//	system("pause");
+//	return 0;
+//}
+
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
 class Solution{
 public:
-	string& StrResult(string s1, string s2){
-		const char *temp = s2.c_str();
-		int pos = 0;
-		while (*temp != '\0'){
-			const char * cur = temp;
-			while (-1 != (pos = (int)s1.find(*temp))){
-				s1.erase(pos, 1);
-				cur++;
-			}
-			++temp;
+	string StrResult(string str1, string str2){
+		if (str1.empty() || str2.empty()){
+			return str1;
 		}
-		return s1;
+		int i = 0;
+		for (i = 0; i < str1.size(); ++i){
+			if (-1!=(int)str2.find(str1[i])){
+				str1.erase(i, 1);
+				i -= 1;
+			}
+		}
+		return str1;
 	}
 };
 
 int main(){
-	string str1;
-	cin >> str1;
-	string str2;
-	cin >> str2;
+	string s1 = "";
+	getline(cin, s1);
+	string s2 = "";
+	getline(cin, s2);
 	string result = "";
 	Solution s;
-	result = s.StrResult(str1, str2);
-	
+	result = s.StrResult(s1, s2);
 	cout << result << endl;
 	system("pause");
 	return 0;
